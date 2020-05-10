@@ -5,3 +5,12 @@ services:
 script:
     - docker build -t tiagovalverde/node .
     - docker images tiagovalverde/node
+
+before__deploy:
+    - docker login -u <username> -p <userpassword>
+
+deploy:
+    provider: script
+    script: docker push tiagovalverde/node
+    on:
+        branch: master
